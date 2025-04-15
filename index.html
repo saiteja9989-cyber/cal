@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple Calculator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    .calculator {
+      max-width: 600px;
+      margin: 80px auto;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    .btn {
+      width: 100px;
+      height: 60px;
+      font-size: 1.5rem;
+    }
+    #result {
+      height: 60px;
+      font-size: 1.5rem;
+      text-align: right;
+      padding-right: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container calculator bg-dark">
+  <input type="text" class="form-control mb-3" id="result" disabled>
+
+  <div class="row g-2 mb-3">
+    <div class="col"><button class="btn btn-danger" onclick="clearResult()">AC</button></div>
+    <div class="col"><button class="btn btn-primary" onclick="deleteLast()">⌫</button></div>
+    <div class="col"><button class="btn btn-primary" onclick="append('%')">%</button></div>
+    <div class="col"><button class="btn btn-primary" onclick="append('/')">/</button></div>
+
+   
+  </div>
+  <div class="row g-2 mb-2">
+    <div class="col"><button class="btn btn-primary" onclick="append('7')">7</button></div>
+    <div class="col"><button class="btn btn-primary" onclick="append('8')">8</button></div>
+    <div class="col"><button class="btn btn-primary" onclick="append('9')">9</button></div>
+        <div class="col"><button class="btn btn-primary" onclick="append('+')">+</button></div>
+
+  <div class="row g-2 mb-2">
+   
+  </div>
+
+  <div class="row g-2 mb-2">
+    <div class="col"><button class="btn btn-primary" onclick="append('4')">4</button></div>
+    <div class="col"><button class="btn btn-primary" onclick="append('5')">5</button></div>
+    <div class="col"><button class="btn btn-primary" onclick="append('6')">6</button></div>
+    <div class="col"><button class="btn btn-primary" onclick="append('*')">*</button></div>
+
+  </div>
+
+  <div class="row g-2 mb-2">
+    <div class="col"><button class="btn btn-primary" onclick="append('1')">1</button></div>
+    <div class="col"><button class="btn btn-primary" onclick="append('2')">2</button></div>
+    <div class="col"><button class="btn btn-primary" onclick="append('3')">3</button></div>
+    <div class="col"><button class="btn btn-primary" onclick="append('0')">0</button></div>
+
+  </div>
+
+  <div class="row g-1 mb-2">
+    <div class="col-4"><button class="btn btn-primary" onclick="append('.')">.</button></div>
+   <div class="col-7"><button class="btn btn-primary w-100" onclick="calculate()">=</button></div>
+
+  </div>
+</div>
+
+<script>
+  function append(value) {
+    document.getElementById('result').value += value;
+  }
+
+  function clearResult() {
+    document.getElementById('result').value = '';
+  }
+
+  function deleteLast() {
+    const current = document.getElementById('result').value;
+    document.getElementById('result').value = current.slice(0, -1);
+  }
+
+  function calculate() {
+    try {
+      const output = eval(document.getElementById('result').value);
+      document.getElementById('result').value = output;
+    } catch (e) {
+      document.getElementById('result').value = 'invalid operation';
+    }
+  }
+</script>
+
+</body>
+</html>
